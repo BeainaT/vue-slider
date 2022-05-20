@@ -45,8 +45,18 @@ const app = new Vue ({
                 this.currentIndex++;
             }
         },
+        //bonus-1: al click su una thumb visualizzo l'immagine corrispondente in grande
         selectPic(index) {
             this.currentIndex = index;
-        } 
+        },
+        //bonus-2 applicare l'autoplay allo slider: ogni 3 secondi, cambia immagine automaticamente
+        sliders: function() {
+            //Inizializzo funzione SetInterval passando come parametri (funzione creata in precedenza per passare da un'immagine all'altra, 3s come intervallo di tempo)
+            setInterval(this.nextPic, 3000);
+        }
     },
+    //alla fine del rendering iniziale, chiamo la funzione sliders
+    mounted() {
+        this.sliders();
+    }
 });
