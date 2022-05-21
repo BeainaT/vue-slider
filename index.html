@@ -9,7 +9,7 @@
 </head>
 <body>
    <div class="container" id="mainBox">
-        <div class="items">
+        <div class="items" @mouseover="stopSliders()" @mouseleave="startSliders()">
             
             <div class="item active">
                 <img :src="images[currentIndex].src" alt="">

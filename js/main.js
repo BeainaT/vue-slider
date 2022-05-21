@@ -29,6 +29,8 @@ const app = new Vue ({
                 text: 'Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,',
             },
         ],
+        //inizializzo variabile timer (bonus 3)
+        timer: null,
     },
     methods: {
         prevPic() {
@@ -51,12 +53,22 @@ const app = new Vue ({
         },
         //bonus-2 applicare l'autoplay allo slider: ogni 3 secondi, cambia immagine automaticamente
         sliders: function() {
-            //Inizializzo funzione SetInterval passando come parametri (funzione creata in precedenza per passare da un'immagine all'altra, 3s come intervallo di tempo)
-            setInterval(this.nextPic, 3000);
-        }
+        //     //Inizializzo funzione SetInterval passando come parametri (funzione creata in precedenza per passare da un'immagine all'altra, 3s come intervallo di tempo)
+            this.timer = setInterval(this.nextPic, 3000);
+        },
+        //bonus-3 bloccare l'autoplay all'hover del mouse sullo sliders e farlo riprendere al mouseleave
+        //funzione che fa avanzare le thumb ogni 3s
+        startSliders: function() {
+            this.nextPic();
+            this.timer = setInterval(this.nextPic, 3000);
+        },
+        //funzione che blocca lo sliders.
+        stopSliders: function() {
+            clearInterval(this.timer, setInterval);
+        },
     },
     //alla fine del rendering iniziale, chiamo la funzione sliders
     mounted() {
         this.sliders();
-    }
+    },
 });
